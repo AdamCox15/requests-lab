@@ -20,8 +20,12 @@ let sayHelloButton = document.querySelector('#say-hello-button');
 */
 
 // CODE HERE
-
-
+const changeHelloBtn = (event) => {
+    event.preventDefault();
+sayHelloButton.style.backgroundColor = 'black';
+sayHelloButton.style.color = 'white';
+}
+ sayHelloButton.addEventListener('mouseover', changeHelloBtn);
 // PROBLEM 3
 /*
     Now you can see that the button colors change, but they do not change back when we take the mouse off of the button.
@@ -32,7 +36,12 @@ let sayHelloButton = document.querySelector('#say-hello-button');
 */
 
 // CODE HERE
-
+const changeBack = (event) => {
+    event.preventDefault();
+    sayHelloButton.style.backgroundColor = '#EFEFEF';
+    sayHelloButton.style.color = 'black';
+}
+sayHelloButton.addEventListener('mouseout',changeBack);
 
 // PROBLEM 4
 /*
@@ -53,7 +62,7 @@ const sayHello = () => {
 // DO NOT EDIT FUNCTION
 
 // CODE HERE
-
+sayHelloButton.addEventListener('click', sayHello);
 
 // PROBLEM 5 
 /*
@@ -68,6 +77,11 @@ const sayHello = () => {
 
 const ohMy = () => {
     // YOUR CODE HERE
+    axios.get('http://localhost:3000/animals') 
+    .then((res) => {
+        console.log(res.data);
+    })
+    
 }
 
 document.getElementById('animals-button').addEventListener('click', ohMy)
@@ -86,9 +100,18 @@ document.getElementById('animals-button').addEventListener('click', ohMy)
     We'll be updating this function in the next problem.
 */
 
-const repeatMyParam = () => {
+const repeatMyParam = (res) => {
     //YOUR CODE HERE
+    event.preventDefault();
+    axios.get('http://localhost:3000/repeat/Rook')
+    .then((res) => {
+        let newDoc = document.getElementById('repeat-text')
+    newDoc.textContent = res.data
+    newDoc.style.display= 'block'
+        console.log(res.data);
+    })
 }
+document.querySelector('#repeat-button').addEventListener('click', repeatMyParam);
 
 // PROBLEM 7
 /*
@@ -103,6 +126,7 @@ const repeatMyParam = () => {
 
 
 
+
 // PROBLEM 8
 /*
     Time to attach a query to our request!
@@ -113,7 +137,14 @@ const repeatMyParam = () => {
 */
 
 // CODE HERE
+const reqArea = () => {
+axios.get('http://localhost:3000/query-test?rook=Malinois')
+.then(
+    (res)=>console.log(res.data)
+)
+}
 
+document.querySelector('#query-button').addEventListener('click',reqArea);
 
 
 ////////////////
