@@ -79,7 +79,12 @@ const ohMy = () => {
     // YOUR CODE HERE
     axios.get('http://localhost:3000/animals') 
     .then((res) => {
-        console.log(res.data);
+        for(let i = 0; i < res.data.length; i++){
+            let p = document.createElement('p')
+            p.textContent = res.data[i]
+            document.body.appendChild(p)
+        }
+        
     })
     
 }
@@ -138,7 +143,7 @@ document.querySelector('#repeat-button').addEventListener('click', repeatMyParam
 
 // CODE HERE
 const reqArea = () => {
-axios.get('http://localhost:3000/query-test?rook=Malinois')
+axios.get('http://localhost:3000/query-test?dog=Dekker/query-test?rook=malinois')
 .then(
     (res)=>console.log(res.data)
 )
@@ -197,3 +202,19 @@ document.querySelector('#query-button').addEventListener('click',reqArea);
 */
 
 // CODE HERE 
+GabrielWilkins — Today at 4:58 PM
+const createFood = (event) => {
+    event.preventDefault()
+    let foodInput = document.querySelector('#fooder')
+    console.log(foodInput.value)
+    const body = {
+        newFood : foodInput.value
+    }
+    axios.post('http://localhost:3000/food', body)
+    .then((res) =>  {
+        return res.data
+    })
+}
+
+let food = document.querySelector('#Hello')
+food.addEventListener('submit', createFood)
