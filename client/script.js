@@ -202,7 +202,7 @@ document.querySelector('#query-button').addEventListener('click',reqArea);
 */
 
 // CODE HERE 
-GabrielWilkins — Today at 4:58 PM
+
 const createFood = (event) => {
     event.preventDefault()
     let foodInput = document.querySelector('#fooder')
